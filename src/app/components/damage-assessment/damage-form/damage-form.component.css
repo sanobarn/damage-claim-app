@@ -1,0 +1,53 @@
+.upload-container {
+  width: 100%;
+  max-width: 400px;
+  margin: auto;
+  padding: 16px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.upload-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.file-drop-area {
+  border: 2px dashed #cccccc;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+.file-drop-area:hover {
+  border-color: #3f51b5;
+}
+
+.file-preview {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.preview-img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+.progress-container {
+  margin-top: 10px;
+  width: 100%;
+}
+.pdf-icon {
+  width: 50px;
+  height: 50px;
+  background-image: url('../../../../assets/pdf-icon.png');
+  background-size: cover;  /* Ensures the image fits the container */
+  background-position: center;  /* Centers the image */
+  background-repeat: no-repeat;  /* Prevents the image from repeating */
+}

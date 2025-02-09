@@ -1,0 +1,68 @@
+<div class="upload-container">
+  <!-- Form -->
+  <form [formGroup]="assessmentForm" (ngSubmit)="onSubmit()" class="upload-form">
+    
+    <!-- Claim ID Input -->
+    <mat-form-field appearance="outline">
+      <mat-label>Claim ID</mat-label>
+      <input matInput formControlName="claimId" placeholder="Enter Claim ID">
+      <mat-error *ngIf="assessmentForm.get('claimId')?.invalid && assessmentForm.get('claimId')?.touched">
+        Claim ID is required
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Description Input -->
+    <mat-form-field appearance="outline">
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description" placeholder="Enter description"></textarea>
+      <mat-error *ngIf="assessmentForm.get('description')?.invalid && assessmentForm.get('description')?.touched">
+        Description is required
+      </mat-error>
+    </mat-form-field>
+
+    <!-- File Upload (Drag & Drop or Browse) -->
+    <div 
+      class="file-drop-area" 
+      (dragover)="onDragOver($event)" 
+      (drop)="onDrop($event)">
+      
+      <input 
+        type="file" 
+        (change)="handleFileInput($event)" 
+        accept="image/*, application/pdf"
+        hidden 
+        #fileInput>
+
+      <button mat-button (click)="fileInput.click()" type="button">Choose File</button>
+      
+      <p *ngIf="!selectedFile">Drag & drop an image here or click to browse</p>
+      
+      <!-- File Preview -->
+      <div *ngIf="selectedFile" class="file-preview">
+        <ng-container *ngIf="fileType === 'image'">
+          <img [src]="filePreviewUrl" alt="Preview" class="preview-img">
+        </ng-container>
+        <ng-container *ngIf="fileType === 'pdf'">
+          <div class="pdf-icon"></div> 
+        </ng-container>
+
+        <p>{{ selectedFile.name }}</p>
+        <button mat-icon-button (click)="clearFile()" type="button">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Error Message -->
+    <mat-error *ngIf="assessmentForm.get('file')?.invalid && assessmentForm.get('file')?.touched">
+      File is required
+    </mat-error>
+
+    <!-- Submit Button -->
+    <button mat-raised-button color="primary" type="submit" [disabled]="isUploading || assessmentForm.invalid">Submit</button>
+    <div *ngIf="isUploading" class="progress-container">
+      <mat-progress-bar mode="determinate" [value]="uploadProgress"></mat-progress-bar>
+      <p>{{ uploadProgress }}% Uploaded</p>
+    </div>
+  </form>
+</div>

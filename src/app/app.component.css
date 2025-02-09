@@ -1,0 +1,84 @@
+.mat-toolbar.mat-dark {
+    background: #374b65; /* Light blue-grey tone */
+    color: #ffffff;
+}
+
+/* Full-height container */
+.main-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; 
+}
+
+/* Sidebar */
+.sidebar {
+    width: 300px;
+    background-color: #e3eaf2; /* Light bluish-gray */
+    color: #374b65;
+    box-shadow: 3px 0 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+}
+
+/* Sidebar Header */
+.side-toolbar {
+    background: #d7dee8; /* Lighter blue-grey */
+    color: #2c3e50;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 15px;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Navigation Links */
+mat-nav-list {
+    padding: 0;
+}
+
+mat-nav-list a {
+    color: #374b65;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Icon styling */
+mat-icon {
+    margin-right: 10px;
+    font-size: 20px;
+    color: #556a85;
+}
+
+/* Hover effect */
+mat-nav-list a:hover {
+    background: rgba(55, 75, 101, 0.1); /* Light hover effect */
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+    transform: scale(1.02);
+}
+
+/* Active Link */
+mat-nav-list a.active {
+    background: rgba(55, 75, 101, 0.2);
+    font-weight: bold;
+    border-left: 4px solid #5a8bb2;
+}
+
+/* Divider between Sidebar and Content */
+.divider {
+    width: 2px;
+    background-color: rgba(55, 75, 101, 0.2);
+    height: 100vh;
+}
+
+/* Content Area */
+.content {
+    flex: 1 1 auto; /* Content will grow and take up the remaining space */
+  padding: 20px;
+  overflow-y: auto;
+    background-color: #f2f4f8; /* Very light background */
+    color: #2c3e50;
+}

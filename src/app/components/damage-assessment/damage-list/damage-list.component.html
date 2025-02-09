@@ -1,0 +1,65 @@
+<mat-card *ngIf="isLoading" class="loading-card">
+  <mat-spinner diameter="50"></mat-spinner>
+  <span>Loading...</span>
+</mat-card>
+
+<mat-card *ngIf="!isLoading && damageAssessments.length > 0">
+  <mat-table [dataSource]="damageAssessments" class="mat-elevation-z8">
+
+    <!-- Claim ID Column -->
+    <ng-container matColumnDef="claimId">
+      <mat-header-cell *matHeaderCellDef> Claim ID </mat-header-cell>
+      <mat-cell *matCellDef="let assessment"> {{ assessment.claimId }} </mat-cell>
+    </ng-container>
+    <!-- Actions Column (Download/View) -->
+    <ng-container matColumnDef="fileName">
+      <mat-header-cell *matHeaderCellDef> File Name </mat-header-cell>
+      <mat-cell *matCellDef="let assessment">
+        <button mat-button (click)="openFile(assessment.fileName)">         
+          {{ assessment.fileName }}
+        </button>
+      </mat-cell>
+    </ng-container>  
+  <!-- Description Column -->
+  <ng-container matColumnDef="description">
+    <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+    <mat-cell *matCellDef="let assessment"> {{ assessment.description }} </mat-cell>
+  </ng-container>
+
+  <!-- Upload Timestamp Column -->
+  <ng-container matColumnDef="uploadTimestamp">
+    <mat-header-cell *matHeaderCellDef> Upload Timestamp </mat-header-cell>
+    <mat-cell *matCellDef="let assessment">
+      {{ assessment.uploadTimestamp | date: 'short' }}
+    </mat-cell>
+  </ng-container>
+
+  <!-- File Size Column -->
+  <ng-container matColumnDef="fileSize">
+    <mat-header-cell *matHeaderCellDef> File Size (bytes) </mat-header-cell>
+    <mat-cell *matCellDef="let assessment">   {{ assessment.fileMetaData?.size ? (assessment.fileMetaData.size | number) : 'N/A' }} </mat-cell>
+  </ng-container>
+
+  <!-- File Type Column -->
+  <ng-container matColumnDef="fileType">
+    <mat-header-cell *matHeaderCellDef> File Type </mat-header-cell>
+    <mat-cell *matCellDef="let assessment"> {{ assessment.fileMetaData?.type || 'N/A' }}  </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="download">
+    <mat-header-cell *matHeaderCellDef>  </mat-header-cell>
+    <mat-cell *matCellDef="let assessment">
+      <button mat-icon-button (click)="downloadFile(assessment.fileName)" aria-label="Download">
+        <mat-icon>cloud_download</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</mat-card>
+
+<mat-card *ngIf="!isLoading && damageAssessments.length === 0">
+  No damage assessments found.
+</mat-card>
