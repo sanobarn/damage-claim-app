@@ -21,7 +21,6 @@ import { LoggerService } from '../../../shared/services/logger.service';
   providers: [DamageAssessmentService]
 })
 export class DamageFormComponent {
-  [x: string]: any;
   assessmentForm: FormGroup;
   selectedFile: File | null = null;
   filePreviewUrl: SafeResourceUrl | null = null;
